@@ -92,7 +92,7 @@ object Result {
       Result.Exception(other, None)
   }
 
-  private def formatError(name: String, msg: String,
+  private def formatError(name: String, msg: String|Null,
     source: Option[Throwable],
     location: Option[SourceLocation],
     traceLimit: Option[Int],
@@ -113,7 +113,7 @@ object Result {
     }
 
     val formattedMessage = formatDescription(
-      if (msg != null && msg.nonEmpty) msg else "Test failed",
+      if (msg != null && msg.nn.nonEmpty) msg else "Test failed",
       location, color, reset, "  ")
 
     color + s"- $name *** FAILED ***" + reset + EOL +
